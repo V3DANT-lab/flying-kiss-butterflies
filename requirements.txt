@@ -1,0 +1,19 @@
+# Flying Kiss 🦋 — verified dependency set (tested on Python 3.12)
+#
+# These pins are EXACT on purpose.  Do not loosen them:
+#
+#   * mediapipe MUST be 0.10.14.  Later 0.10.x releases (e.g. 0.10.35) ship
+#     only the `tasks` API — the legacy `mp.solutions` module that this project
+#     uses for FaceMesh + Hands was removed, so the app dies at import with
+#     "module 'mediapipe' has no attribute 'solutions'".
+#   * numpy MUST be < 2.  MediaPipe 0.10.x is built against the NumPy 1.x C
+#     API and misbehaves / fails to import on NumPy 2.x.
+#   * opencv MUST be the contrib build only.  Installing opencv-python
+#     alongside opencv-contrib-python leaves two copies of the `cv2` module
+#     fighting over the same files; mediapipe requires the contrib build.
+numpy==1.26.4
+mediapipe==0.10.14
+opencv-contrib-python==4.10.0.84
+Pillow>=10.0,<13
+requests>=2.28
+# pygame>=2.5                   # optional — enables the little kiss sound cue
